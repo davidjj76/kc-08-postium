@@ -29,9 +29,12 @@ export class PostService {
      |   - Filtro por fecha de publicación: publicationDate_lte=x (siendo x la fecha actual)        |
      |   - Ordenación: _sort=publicationDate&_order=DESC                                            |
      |----------------------------------------------------------------------------------------------*/
-
+    
+    const publicationDateFilter: string = `publicationDate_lte=${new Date().getTime()}`;
+    const orderByPublicationDate: string = '_sort=publicationDate&_order=DESC';
+    
     return this._http
-      .get(`${this._backendUri}/posts`)
+      .get(`${this._backendUri}/posts?${publicationDateFilter}&${orderByPublicationDate}`)
       .map((response: Response): Post[] => Post.fromJsonToList(response.json()));
   }
 
