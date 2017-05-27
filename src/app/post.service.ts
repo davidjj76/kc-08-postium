@@ -122,7 +122,10 @@ export class PostService {
      | 'fromJson() para crar un nuevo objeto Post basado en la respuesta HTTP obtenida. |
      |----------------------------------------------------------------------------------*/
 
-    return null;
+    return this._http
+      .post(`${this._backendUri}/posts`, post)
+      .map((response: Response): Post => Post.fromJson(response.json()));
+
   }
 
 }
