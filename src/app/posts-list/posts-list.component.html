@@ -19,5 +19,6 @@
 <post-preview 
   *ngFor="let post of posts" 
   [post]="post"
-  (onPostClick)="gotoPostDetail(post)">
+  (onPostClick)="gotoPostDetail($event)"
+  (onAuthorClick)="gotoUserPosts($event)">
 </post-preview>

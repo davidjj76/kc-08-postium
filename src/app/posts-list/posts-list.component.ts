@@ -6,6 +6,7 @@ import {
 import { Router } from '@angular/router';
 
 import { Post } from './../post';
+import { User } from './../user';
 
 @Component({
   selector: 'posts-list',
@@ -17,7 +18,7 @@ export class PostsListComponent {
 
   @Input() posts: Post[];
 
-  constructor(private router: Router) { }
+  constructor(private _router: Router) { }
 
   /*------------------------------------------------------------------------------------------------------------------|
    | ~~~ Red Path ~~~                                                                                                 |
@@ -26,6 +27,10 @@ export class PostsListComponent {
    | dirección correspondiente. Recuerda que para hacer esto necesitas inyectar como dependencia el Router de la app. |
    | La ruta a navegar es '/posts/users', pasando como parámetro el identificador del autor.                          |
    |------------------------------------------------------------------------------------------------------------------*/
+
+  gotoUserPosts(user: User) {
+    this._router.navigate(['posts', 'users', user.id]);
+  }
 
   /*-----------------------------------------------------------------------------------------------------------------|
    | ~~~ Green Path ~~~                                                                                              |
@@ -36,7 +41,7 @@ export class PostsListComponent {
    |-----------------------------------------------------------------------------------------------------------------*/
 
   gotoPostDetail(post: Post): void {
-    this.router.navigate(['posts', post.id]);
+    this._router.navigate(['posts', post.id]);
   }
 
 }
