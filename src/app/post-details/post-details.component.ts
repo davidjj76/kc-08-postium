@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { NativeWindow } from './../window';
 import { Post } from './../post';
 import { User } from './../user';
+import { Category } from './../category';
 
 @Component({
   templateUrl: './post-details.component.html',
@@ -40,7 +41,7 @@ export class PostDetailsComponent implements OnInit {
    | pasando como parámetro el identificador del autor.                                                            |
    |---------------------------------------------------------------------------------------------------------------*/
   
-  gotoUserPosts(user: User) {
+  gotoUserPosts(user: User): void {
     this._router.navigate(['posts', 'users', user.id]);
   }
 
@@ -51,5 +52,9 @@ export class PostDetailsComponent implements OnInit {
    | para hacer esto necesitas inyectar como dependencia el Router de la app. La ruta a navegar es '/posts/categories', |
    | pasando como parámetro el identificador de la categoría.                                                           |
    |--------------------------------------------------------------------------------------------------------------------*/
+
+  gotoCategoryPosts(category: Category): void {
+    this._router.navigate(['posts', 'categories', category.id]);  
+  }
 
 }

@@ -2,9 +2,11 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/filter";
 
 import { BackendUri } from './settings';
 import { Post } from './post';
+import { Category } from './category';
 
 @Injectable()
 export class PostService {
@@ -89,9 +91,20 @@ export class PostService {
      |   - Ordenación: _sort=publicationDate&_order=DESC                                                |
      |--------------------------------------------------------------------------------------------------*/
 
-    return this._http
-      .get(`${this._backendUri}/posts`)
-      .map((response: Response): Post[] => Post.fromJsonToList(response.json()));
+    const publicationDateFilter: string = `publicationDate_lte=${new Date().getTime()}`;
+    const orderByPublicationDate: string = '_sort=publicationDate&_order=DESC';
+    
+    const $posts = this._http
+      .get(`${this._backendUri}/posts?${publicationDateFilter}&${orderByPublicationDate}`)
+      .map((response: Response): Post[] => Post.fromJsonToList(response.json()))
+      .map((posts: Post[]): Post[] => posts
+        .filter((post: Post): boolean => (
+          post.categories.findIndex((category: Category): boolean => (
+            category.id.toString() === id.toString()
+          )) >= 0
+        ))
+      );
+    return $posts;
   }
 
   getPostDetails(id: number): Observable<Post> {
