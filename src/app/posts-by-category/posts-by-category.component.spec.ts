@@ -6,6 +6,7 @@ import { NativeWindowProvider } from './../window';
 import { PostPreviewComponent } from './../post-preview/post-preview.component';
 import { PostsByCategoryComponent } from './posts-by-category.component';
 import { PostsListComponent } from './../posts-list/posts-list.component';
+import { FromNowPipe } from './../from-now.pipe';
 
 class RouterStub { }
 
@@ -32,7 +33,8 @@ describe('PostsByCategoryComponent', () => {
       declarations: [
         PostPreviewComponent,
         PostsByCategoryComponent,
-        PostsListComponent
+        PostsListComponent,
+        FromNowPipe
       ],
       providers: [
         NativeWindowProvider,

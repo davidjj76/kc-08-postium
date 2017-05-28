@@ -280,6 +280,38 @@
         2
       ],
       "id": 10
+    },
+    {
+      "title": "Título",
+      "intro": "Introduce tu historia",
+      "body": "Cuenta tu historia",
+      "publicationDate": 1495907667510,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": [],
+      "id": 11
+    },
+    {
+      "title": "Título 2",
+      "intro": "Introduce tu historia 2",
+      "body": "Cuenta tu historia 2",
+      "publicationDate": 1496253300000,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": [],
+      "id": 12
     }
   ],
   "categories": [

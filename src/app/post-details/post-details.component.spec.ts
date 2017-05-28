@@ -13,6 +13,7 @@ import { PostFormComponent } from './../post-form/post-form.component';
 import { PostDetailsComponent } from './post-details.component';
 import { PostService } from './../post.service';
 import { User } from './../user';
+import { FromNowPipe } from './../from-now.pipe';
 
 class RouterStub { }
 
@@ -34,7 +35,8 @@ describe('PostDetailsComponent', () => {
       declarations: [
         CategoryBoxComponent,
         PostFormComponent,
-        PostDetailsComponent
+        PostDetailsComponent,
+        FromNowPipe
       ],
       providers: [
         BackendUriProvider,

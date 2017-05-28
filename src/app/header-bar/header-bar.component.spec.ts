@@ -32,7 +32,7 @@ describe('HeaderBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('Debería existir un enlace a /new-story', () => {
+  it('Debería existir un enlace a /new-story', () => {
     let des = fixture.debugElement.queryAll(By.directive(RouterLinkWithHref));
     let idx = des.findIndex(de => de.properties.href === '/new-story');
     expect(idx).toBeGreaterThan(-1);

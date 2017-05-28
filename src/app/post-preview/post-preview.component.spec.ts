@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Post } from './../post';
 import { PostPreviewComponent } from './post-preview.component';
 import { User } from './../user';
+import { FromNowPipe } from './../from-now.pipe';
 
 describe('PostPreviewComponent', () => {
 
@@ -12,7 +13,8 @@ describe('PostPreviewComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        PostPreviewComponent
+        PostPreviewComponent,
+        FromNowPipe
       ]
     });
     fixture = TestBed.createComponent(PostPreviewComponent);
