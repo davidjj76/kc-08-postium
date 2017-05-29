@@ -41,11 +41,12 @@ export class PostService {
 
   getPostsBySearch(search: string): Observable<Post[]> {
 
+    const searchFilter: string = `q=${search}`;
     const publicationDateFilter: string = `publicationDate_lte=${new Date().getTime()}`;
     const orderByPublicationDate: string = '_sort=publicationDate&_order=DESC';
     
     return this._http
-      .get(`${this._backendUri}/posts?q=${search}&${publicationDateFilter}&${orderByPublicationDate}`)
+      .get(`${this._backendUri}/posts?${searchFilter}&${publicationDateFilter}&${orderByPublicationDate}`)
       .map((response: Response): Post[] => Post.fromJsonToList(response.json()));
   }
 
