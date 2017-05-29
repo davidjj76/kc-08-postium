@@ -1,1 +1,4 @@
-<posts-list [posts]="posts"></posts-list>
+<div class="posts-view">
+  <h2 *ngIf="search">Historias sobre <em>"{{ search }}"</em></h2>
+  <posts-list [posts]="posts"></posts-list>
+</div>

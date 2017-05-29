@@ -16,7 +16,7 @@ export class HeaderBarComponent {
         q: search
       }
     }
-    this._router.navigate(['posts', 'search'], extras);
+    this._router.navigate(['posts'], extras);
   }
 
 }

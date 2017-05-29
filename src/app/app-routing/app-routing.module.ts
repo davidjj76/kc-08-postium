@@ -16,12 +16,6 @@ import { PostsBySearchComponent } from './../posts-by-search/posts-by-search.com
     RouterModule.forRoot([{
       path: 'posts',
       component: PostsViewComponent,
-      resolve: {
-        posts: PostsResolveService
-      }
-    }, {
-      path: 'posts/search',
-      component: PostsBySearchComponent,
     }, {
       path: 'posts/users/:userId',
       component: PostsByAuthorComponent,
