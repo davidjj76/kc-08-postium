@@ -9,6 +9,7 @@ import { PostDetailsComponent } from './../post-details/post-details.component';
 import { PostsByCategoryComponent } from './../posts-by-category/posts-by-category.component';
 import { PostsByAuthorComponent } from './../posts-by-author/posts-by-author.component';
 import { PostsViewComponent } from './../posts-view/posts-view.component';
+import { PostsBySearchComponent } from './../posts-by-search/posts-by-search.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { PostsViewComponent } from './../posts-view/posts-view.component';
       resolve: {
         posts: PostsResolveService
       }
+    }, {
+      path: 'posts/search',
+      component: PostsBySearchComponent,
     }, {
       path: 'posts/users/:userId',
       component: PostsByAuthorComponent,

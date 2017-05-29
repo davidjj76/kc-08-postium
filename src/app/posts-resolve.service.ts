@@ -21,7 +21,7 @@ export class PostsResolveService implements Resolve<Post[]> {
      |-----------------------------------------------------------------------------------------*/
 
     if (route.params.userId) {
-      return this._postService.getUserPosts(route.params.userId)
+      return this._postService.getUserPosts(route.params.userId);
     }
 
     /*-----------------------------------------------------------------------------------------|
@@ -33,7 +33,11 @@ export class PostsResolveService implements Resolve<Post[]> {
      |-----------------------------------------------------------------------------------------*/
 
     if (route.params.categoryId) {
-      return this._postService.getCategoryPosts(route.params.categoryId)
+      return this._postService.getCategoryPosts(route.params.categoryId);
+    }
+
+    if (route.queryParams && route.queryParams.q) {
+      return this._postService.getPostsBySearch(route.queryParams.q);
     }
 
     return this._postService.getPosts();
