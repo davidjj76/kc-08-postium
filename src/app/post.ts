@@ -3,7 +3,7 @@ import { Category } from './category';
 
 export class Post {
 
-  private constructor(
+  constructor(
     public id: number,
     public title: string,
     public intro: string,

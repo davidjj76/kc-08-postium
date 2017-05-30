@@ -9,8 +9,8 @@
 -->
 <form
   ngForm
-  #post="ngForm"
-  (ngSubmit)="submitPost(post)"
+  #postForm="ngForm"
+  (ngSubmit)="submitPost(postForm)"
   novalidate>
   <!--
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -22,7 +22,7 @@
   -->
   <input 
     type="text"
-    ngModel
+    [ngModel]="post ? post.title : ''"
     name="title"
     placeholder="Título"
     class="u-full-width"
@@ -36,7 +36,7 @@
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
   -->
   <textarea
-    ngModel
+    [ngModel]="post ? post.intro : ''"
     name="intro"
     placeholder="Introduce tu historia"
     class="u-full-width georgia-font"
@@ -52,6 +52,8 @@
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
   -->
   <textarea
+    ngModel
+    [ngModel]="post ? post.body : ''"
     ngModel
     name="body"
     placeholder="Cuenta tu historia"
@@ -90,7 +92,7 @@
   <button 
     type="submit"
     class="button-primary u-pull-right"
-    [disabled]="post.invalid">
-    Publicar
+    [disabled]="postForm.invalid">
+    {{ post ? 'Guardar': 'Publicar' }}
   </button>
 </form>

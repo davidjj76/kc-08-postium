@@ -9,7 +9,6 @@ import { PostDetailsComponent } from './../post-details/post-details.component';
 import { PostsByCategoryComponent } from './../posts-by-category/posts-by-category.component';
 import { PostsByAuthorComponent } from './../posts-by-author/posts-by-author.component';
 import { PostsViewComponent } from './../posts-view/posts-view.component';
-import { PostsBySearchComponent } from './../posts-by-search/posts-by-search.component';
 
 @NgModule({
   imports: [
@@ -32,6 +31,12 @@ import { PostsBySearchComponent } from './../posts-by-search/posts-by-search.com
     }, {
       path: 'new-story',
       component: NewStoryComponent
+    }, {
+      path: 'posts/:postId/edit',
+      component: NewStoryComponent,
+      resolve: {
+        post: PostDetailsResolveService
+      }
     }, {
       path: 'posts/:postId',
       component: PostDetailsComponent,

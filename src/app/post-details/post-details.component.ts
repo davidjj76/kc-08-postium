@@ -18,6 +18,8 @@ import { Category } from './../category';
 export class PostDetailsComponent implements OnInit {
 
   post: Post;
+  // Fake user
+  loggedUser: User = User.defaultUser();
 
   constructor(
     private _router: Router, 
@@ -55,6 +57,10 @@ export class PostDetailsComponent implements OnInit {
 
   gotoCategoryPosts(category: Category): void {
     this._router.navigate(['posts', 'categories', category.id]);  
+  }
+
+  gotoEditPost(post: Post): void {
+    this._router.navigate(['posts', post.id, 'edit'])
   }
 
 }

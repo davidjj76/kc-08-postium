@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { FormGroup } from "@angular/forms";
 
 import { Post } from './../post';
@@ -14,6 +14,7 @@ export class PostFormComponent implements OnInit {
   private _nowDatetimeLocal: string;
   private _publicationDateScheduled: boolean = false;
 
+  @Input() post: Post;
   @Output() postSubmitted: EventEmitter<Post> = new EventEmitter();
 
   ngOnInit(): void {
@@ -63,10 +64,17 @@ export class PostFormComponent implements OnInit {
      |-------------------------------------------------------------------------------------------------------------*/
 
     let post: Post = Post.fromJson(form.value);
-    post.likes = [];
-    post.categories = [];
-    post.author = User.defaultUser();
-    post.publicationDate = this._getPostPublicationDate(form.value.publicationDate);
+    post = {
+      ...this.post,
+      title: post.title,
+      intro: post.intro,
+      body: post.body,
+      media: this.post ? this.post.media : '',
+      likes: this.post ? this.post.likes : [],
+      categories: this.post ? this.post.categories : [],
+      author: User.defaultUser(),
+      publicationDate: this._getPostPublicationDate(form.value.publicationDate)
+    }
     this.postSubmitted.emit(post);
   }
 

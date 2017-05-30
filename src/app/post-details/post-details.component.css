@@ -52,6 +52,17 @@
   font-size: 0.8em;
 }
 
+.metadata .edit {
+  padding: 0;
+  margin: 8px 0;
+  border: none;
+  vertical-align: center;
+}
+
+.metadata .edit:hover {
+  color: #00ab6b;
+}
+
 .post {
   margin-top: 10px;
 }
