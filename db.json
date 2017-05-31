@@ -311,7 +311,9 @@
         "email": "keepcoder@postium.com",
         "avatar": "assets/images/keepcoder.jpg"
       },
-      "likes": [],
+      "likes": [
+        1
+      ],
       "id": 12
     },
     {
@@ -429,7 +431,9 @@
         "email": "keepcoder@postium.com",
         "avatar": "assets/images/keepcoder.jpg"
       },
-      "likes": []
+      "likes": [
+        1
+      ]
     }
   ],
   "categories": [

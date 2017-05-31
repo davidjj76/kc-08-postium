@@ -146,9 +146,9 @@ export class PostService {
 
   }
 
-  patchLikes(post: Post): Observable<Post> {
+  patchPostLikes(id: number, likes: number[]): Observable<Post> {
     return this._http
-      .patch(`${this._backendUri}/posts/${post.id}`, { likes: post.likes })
+      .patch(`${this._backendUri}/posts/${id}`, { likes })
       .map((response: Response): Post => Post.fromJson(response.json()));
   }
 

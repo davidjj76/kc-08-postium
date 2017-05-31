@@ -67,8 +67,14 @@ export class PostDetailsComponent implements OnInit {
 
   addLike() {
     if (this.post.likes.indexOf(User.defaultUser().id) < 0) {
-      this.post.likes.push(User.defaultUser().id);
-      this._postService.patchLikes(this.post).subscribe();
+      debugger;
+      this._postService.patchPostLikes(
+        this.post.id, 
+        this.post.likes.concat(User.defaultUser().id)
+      ).subscribe((post: Post) => {
+        debugger;
+        this.post = post
+      });
     }
   }
 
