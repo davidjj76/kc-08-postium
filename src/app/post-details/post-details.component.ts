@@ -67,12 +67,10 @@ export class PostDetailsComponent implements OnInit {
 
   addLike() {
     if (this.post.likes.indexOf(User.defaultUser().id) < 0) {
-      debugger;
       this._postService.patchPostLikes(
         this.post.id, 
         this.post.likes.concat(User.defaultUser().id)
       ).subscribe((post: Post) => {
-        debugger;
         this.post = post
       });
     }
