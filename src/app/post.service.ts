@@ -149,11 +149,7 @@ export class PostService {
   patchLikes(post: Post): Observable<Post> {
     return this._http
       .patch(`${this._backendUri}/posts/${post.id}`, { likes: post.likes })
-      .map((response: Response): Post => {
-        console.log(response);
-        return Post.fromJson(response.json());
-      });
-
+      .map((response: Response): Post => Post.fromJson(response.json()));
   }
 
 }
