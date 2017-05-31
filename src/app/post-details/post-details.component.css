@@ -16,10 +16,17 @@
   height: 46px;
 }
 
-.metadata .edit-icon {
-  border: none;
+.metadata .edit-icon, .like-icon {
   padding: 4px 8px;
-  font-size: 1em;
+  border: none;
+}
+
+.metadata .edit-icon:hover, .like-icon:hover {
+  color: #00ab6b;
+}
+
+.like-icon {
+  margin-top: 10px;
 }
 
 .metadata .avatar,
@@ -52,17 +59,6 @@
   font-size: 0.8em;
 }
 
-.metadata .edit {
-  padding: 0;
-  margin: 8px 0;
-  border: none;
-  vertical-align: center;
-}
-
-.metadata .edit:hover {
-  color: #00ab6b;
-}
-
 .post {
   margin-top: 10px;
 }
@@ -93,4 +89,8 @@
   text-align: right;
   color: rgba(0, 0, 0, .4);
   font-size: .9em;
+}
+
+.action-button {
+
 }

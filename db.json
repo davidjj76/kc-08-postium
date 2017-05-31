@@ -312,6 +312,123 @@
       },
       "likes": [],
       "id": 12
+    },
+    {
+      "id": 13,
+      "title": "editando...",
+      "intro": "1",
+      "body": "1",
+      "publicationDate": 1496180089115,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": []
+    },
+    {
+      "id": 14,
+      "title": "nueva y modificada",
+      "intro": "3",
+      "body": "24",
+      "publicationDate": 1496180143754,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": []
+    },
+    {
+      "id": 15,
+      "title": "dddd",
+      "intro": "dddd",
+      "body": "dddd",
+      "media": null,
+      "publicationDate": 1496266800000,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": []
+    },
+    {
+      "id": 16,
+      "title": "nueva 2",
+      "intro": "ahora 2",
+      "body": "te la cuento 2",
+      "media": "",
+      "publicationDate": 1496180550767,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": []
+    },
+    {
+      "id": 17,
+      "title": "gghe",
+      "intro": "gghe",
+      "body": "gghe",
+      "media": "",
+      "publicationDate": 1496181078859,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": []
+    },
+    {
+      "id": 18,
+      "title": "1234",
+      "intro": "1234",
+      "body": "1234",
+      "media": "",
+      "publicationDate": 1496181166725,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": []
+    },
+    {
+      "id": 19,
+      "title": "Un cuento chino (y 2)",
+      "intro": "Filipino (2)",
+      "body": "...y mandarino",
+      "media": "",
+      "publicationDate": 1496181652325,
+      "categories": [],
+      "author": {
+        "id": 1,
+        "name": "KeepCoder",
+        "username": "keepcoder",
+        "email": "keepcoder@postium.com",
+        "avatar": "assets/images/keepcoder.jpg"
+      },
+      "likes": []
     }
   ],
   "categories": [

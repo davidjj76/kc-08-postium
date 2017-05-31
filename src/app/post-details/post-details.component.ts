@@ -10,6 +10,7 @@ import { NativeWindow } from './../window';
 import { Post } from './../post';
 import { User } from './../user';
 import { Category } from './../category';
+import { PostService } from './../post.service';
 
 @Component({
   templateUrl: './post-details.component.html',
@@ -24,6 +25,7 @@ export class PostDetailsComponent implements OnInit {
   constructor(
     private _router: Router, 
     private _activatedRoute: ActivatedRoute,
+    private _postService: PostService, 
     @Inject(NativeWindow) private _window) { }
 
   ngOnInit(): void {
@@ -61,6 +63,13 @@ export class PostDetailsComponent implements OnInit {
 
   gotoEditPost(post: Post): void {
     this._router.navigate(['posts', post.id, 'edit'])
+  }
+
+  addLike() {
+    if (this.post.likes.indexOf(User.defaultUser().id) < 0) {
+      this.post.likes.push(User.defaultUser().id);
+      this._postService.patchLikes(this.post)
+    }
   }
 
 }
