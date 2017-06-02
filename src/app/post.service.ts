@@ -118,7 +118,12 @@ export class PostService {
   getPostDetails(id: number): Observable<Post> {
     return this._http
       .get(`${this._backendUri}/posts/${id}`)
-      .map((response: Response): Post => Post.fromJson(response.json()));
+      .map((response: Response): Post => {
+        const post = Post.fromJson(response.json());
+        return post.publicationDate > new Date().getTime()
+          ? null 
+          : post;
+      });
   }
 
   createPost(post: Post): Observable<Post> {

@@ -1,70 +1,75 @@
-<div class="metadata">
-  <div class="u-pull-left">
-    <div class="avatar">
-      <img [src]="post.author.avatar">
+<div *ngIf="post; else noPostBlock">
+  <div class="metadata">
+    <div class="u-pull-left">
+      <div class="avatar">
+        <img [src]="post.author.avatar">
+      </div>
+      <div class="author">
+        <!--
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        | Red Path                                                        |
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        | Un clic sobre el autor debería navegar a su colección de posts. |
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        -->
+        <span 
+          class="name blink-font"
+          (click)="gotoUserPosts(post.author)">
+          {{ post.author.name }}
+        </span>
+        <!--
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        | Blue Path                                                                     |
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        | Una vez tengas creado el pipe FromNowPipe, úsalo con la fecha de publicación. |
+        |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+        -->
+        <span class="date">{{ post.publicationDate | FromNow }}</span>
+      </div>
     </div>
-    <div class="author">
-      <!--
-      |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-      | Red Path                                                        |
-      |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-      | Un clic sobre el autor debería navegar a su colección de posts. |
-      |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-      -->
-      <span 
-        class="name blink-font"
-        (click)="gotoUserPosts(post.author)">
-        {{ post.author.name }}
-      </span>
-      <!--
-      |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-      | Blue Path                                                                     |
-      |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-      | Una vez tengas creado el pipe FromNowPipe, úsalo con la fecha de publicación. |
-      |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-      -->
-      <span class="date">{{ post.publicationDate | FromNow }}</span>
+    <div class="u-pull-right">
+      <button (click)="gotoEditPost(post)"
+        *ngIf="post.author.id===loggedUser.id"
+        class="edit-icon"
+        title="Editar post">
+        <i
+          class="fa fa-3x fa-pencil-square-o" 
+          aria-hidden="true">
+        </i>
+      </button>
     </div>
   </div>
-  <div class="u-pull-right">
-    <button (click)="gotoEditPost(post)"
-      *ngIf="post.author.id===loggedUser.id"
-      class="edit-icon"
-      title="Editar post">
-      <i
-        class="fa fa-3x fa-pencil-square-o" 
+  <div class="post">
+    <h3>{{ post.title }}</h3>
+    <img *ngIf="post.media" [src]="post.media" class="u-max-full-width">
+    <div class="html-text" [innerHtml]="plainTextToHtml(post.intro)"></div>
+    <hr>
+    <div class="html-text" [innerHtml]="plainTextToHtml(post.body)"></div>
+    <!--
+    |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+    | Yellow Path                                                              |
+    |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+    | Suscribe el componente CategoryBoxComponent al evento que hayas definido |
+    | en él para notificar los clics sobre las categorías del post.            |
+    |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
+    -->
+    <category-box 
+      [categories]="post.categories"
+      (onCategoryClick)="gotoCategoryPosts($event)">
+    </category-box>
+    <button
+      (click)="addLike()"
+      class="like-icon"
+      title="Me gusta"
+      [disabled]="sending">
+      <i 
+        class="fa fa-3x fa-thumbs-o-up" 
         aria-hidden="true">
       </i>
+      <span class="like-label">({{ post.likes.length }})</span>
     </button>
   </div>
 </div>
-<div class="post">
-  <h3>{{ post.title }}</h3>
-  <img *ngIf="post.media" [src]="post.media" class="u-max-full-width">
-  <div class="html-text" [innerHtml]="plainTextToHtml(post.intro)"></div>
-  <hr>
-  <div class="html-text" [innerHtml]="plainTextToHtml(post.body)"></div>
-  <!--
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  | Yellow Path                                                              |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  | Suscribe el componente CategoryBoxComponent al evento que hayas definido |
-  | en él para notificar los clics sobre las categorías del post.            |
-  |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-  -->
-  <category-box 
-    [categories]="post.categories"
-    (onCategoryClick)="gotoCategoryPosts($event)">
-  </category-box>
-  <button
-    (click)="addLike()"
-    class="like-icon"
-    title="Me gusta"
-    [disabled]="sending">
-    <i 
-      class="fa fa-3x fa-thumbs-o-up" 
-      aria-hidden="true">
-    </i>
-    <span class="like-label">({{ post.likes.length }})</span>
-  </button>
-</div>
+<ng-template #noPostBlock>
+  <h4>Post not available!</h4>
+</ng-template>
