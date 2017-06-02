@@ -13,6 +13,8 @@ export class PostFormComponent implements OnInit {
 
   private _nowDatetimeLocal: string;
   private _publicationDateScheduled: boolean = false;
+  // Fake user
+  loggedUser: User = User.defaultUser();
 
   @Input() post: Post;
   @Output() postSubmitted: EventEmitter<Post> = new EventEmitter();
@@ -72,7 +74,7 @@ export class PostFormComponent implements OnInit {
       media: this.post ? this.post.media : '',
       likes: this.post ? this.post.likes : [],
       categories: this.post ? this.post.categories : [],
-      author: User.defaultUser(),
+      author: this.loggedUser,
       publicationDate: this._getPostPublicationDate(form.value.publicationDate)
     }
     this.postSubmitted.emit(post);
