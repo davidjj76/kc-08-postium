@@ -22,7 +22,7 @@
   -->
   <input 
     type="text"
-    [ngModel]="post ? post.title : ''"
+    [ngModel]="post?.title"
     name="title"
     placeholder="Título"
     class="u-full-width"
@@ -36,7 +36,7 @@
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
   -->
   <textarea
-    [ngModel]="post ? post.intro : ''"
+    [ngModel]="post?.intro"
     name="intro"
     placeholder="Introduce tu historia"
     class="u-full-width georgia-font"
@@ -53,7 +53,7 @@
   -->
   <textarea
     ngModel
-    [ngModel]="post ? post.body : ''"
+    [ngModel]="post?.body"
     ngModel
     name="body"
     placeholder="Cuenta tu historia"
