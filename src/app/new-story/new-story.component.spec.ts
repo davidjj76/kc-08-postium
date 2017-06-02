@@ -35,7 +35,7 @@ describe('NewStoryComponent', () => {
     component = fixture.componentInstance;
   });
 
-  it('Debería instanciarse', () => {
+  xit('Debería instanciarse', () => {
     fixture.detectChanges();
     expect(component).toBeTruthy();
   });

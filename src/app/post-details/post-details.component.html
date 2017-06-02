@@ -59,7 +59,8 @@
   <button
     (click)="addLike()"
     class="like-icon"
-    title="Me gusta">
+    title="Me gusta"
+    [disabled]="sending">
     <i 
       class="fa fa-3x fa-thumbs-o-up" 
       aria-hidden="true">

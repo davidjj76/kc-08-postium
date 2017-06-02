@@ -21,6 +21,8 @@ export class PostDetailsComponent implements OnInit {
   post: Post;
   // Fake user
   loggedUser: User = User.defaultUser();
+  // Sending likes
+  sending: boolean = false;
 
   constructor(
     private _router: Router, 
@@ -67,11 +69,13 @@ export class PostDetailsComponent implements OnInit {
 
   addLike() {
     if (this.post.likes.indexOf(User.defaultUser().id) < 0) {
+      this.sending = true;
       this._postService.patchPostLikes(
         this.post.id, 
         this.post.likes.concat(User.defaultUser().id)
       ).subscribe((post: Post) => {
         this.post = post
+        this.sending = false;
       });
     }
   }
