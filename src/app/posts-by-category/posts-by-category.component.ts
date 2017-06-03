@@ -20,7 +20,10 @@ export class PostsByCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this._activatedRoute.data.subscribe((data: { posts: Post[] }) => this.posts = data.posts);
-    this._activatedRoute.data.subscribe((data: { category: Category }) => this.category = data.category);
+    this._activatedRoute.data.subscribe(
+      (data: { category: Category }) => this.category = data.category,
+      error => this.category = null
+    );
     this._window.scrollTo(0, 0);
   }
 

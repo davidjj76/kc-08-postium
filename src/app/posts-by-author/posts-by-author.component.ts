@@ -21,7 +21,9 @@ export class PostsByAuthorComponent implements OnInit {
   ngOnInit(): void {
     this._activatedRoute.data.subscribe((data: { posts: Post[] }) => {
       this.posts = data.posts;
-      this.author = data.posts[0].author;
+      if (data.posts.length) {
+        this.author = data.posts[0].author;
+      }
     });
     this._window.scrollTo(0, 0);
   }

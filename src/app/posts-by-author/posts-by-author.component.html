@@ -1,4 +1,10 @@
-<div class="posts-by-author">
-  <h2>Historias de {{ author?.name }}</h2>
-  <posts-list [posts]="posts"></posts-list>
+<div *ngIf="author && posts && posts.length; else noAuthorBlock">
+  <div class="posts-by-author">
+    <h2>Historias de {{ author?.name }}</h2>
+    <posts-list [posts]="posts"></posts-list>
+  </div>
 </div>
+<ng-template #noAuthorBlock>
+  <h4>El autor no existe o no tiene posts!</h4>
+</ng-template>
+

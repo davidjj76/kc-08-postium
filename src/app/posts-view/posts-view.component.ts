@@ -23,7 +23,10 @@ export class PostsViewComponent implements OnInit {
     this._activatedRoute.queryParams.subscribe((params: Params) => {
       this.search = params.q || '';
       this._postResolveService.resolve(this._activatedRoute.snapshot)
-        .subscribe((posts: Post[]) => this.posts = posts);
+        .subscribe(
+          (posts: Post[]) => this.posts = posts,
+          (error: any) => this.posts = []
+        );
     });
     this._window.scrollTo(0, 0);
   }

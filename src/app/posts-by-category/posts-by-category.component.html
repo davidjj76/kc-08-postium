@@ -1,4 +1,9 @@
-<div class="posts-by-category">
-  <h2>Categoría {{ category?.name }}</h2>
-  <posts-list [posts]="posts"></posts-list>
+<div *ngIf="category && posts && posts.length; else noCategoryBlock">
+  <div class="posts-by-category">
+    <h2>Categoría {{ category?.name }}</h2>
+    <posts-list [posts]="posts"></posts-list>
+  </div>
 </div>
+<ng-template #noCategoryBlock>
+  <h4>La categoría no existe o no tiene posts!</h4>
+</ng-template>

@@ -2,6 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import "rxjs/add/observable/throw";
 
 import { BackendUri } from './settings';
 import { Post } from './post';
@@ -13,6 +15,19 @@ export class PostService {
   constructor(
     private _http: Http,
     @Inject(BackendUri) private _backendUri) { }
+
+  private handleError(error: Response | any): Observable<any> {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
+  }
 
   getPosts(): Observable<Post[]> {
 
@@ -36,7 +51,8 @@ export class PostService {
     
     return this._http
       .get(`${this._backendUri}/posts?${publicationDateFilter}&${orderByPublicationDate}`)
-      .map((response: Response): Post[] => Post.fromJsonToList(response.json()));
+      .map((response: Response): Post[] => Post.fromJsonToList(response.json()))
+      .catch(this.handleError);
   }
 
   getPostsBySearch(search: string): Observable<Post[]> {
@@ -47,7 +63,8 @@ export class PostService {
     
     return this._http
       .get(`${this._backendUri}/posts?${searchFilter}&${publicationDateFilter}&${orderByPublicationDate}`)
-      .map((response: Response): Post[] => Post.fromJsonToList(response.json()));
+      .map((response: Response): Post[] => Post.fromJsonToList(response.json()))
+      .catch(this.handleError);
   }
 
   getUserPosts(id: number): Observable<Post[]> {
@@ -75,7 +92,8 @@ export class PostService {
     
     return this._http
       .get(`${this._backendUri}/posts?${authorFilter}&${publicationDateFilter}&${orderByPublicationDate}`)
-      .map((response: Response): Post[] => Post.fromJsonToList(response.json()));
+      .map((response: Response): Post[] => Post.fromJsonToList(response.json()))
+      .catch(this.handleError);
   }
 
   getCategoryPosts(id: number): Observable<Post[]> {
@@ -112,7 +130,8 @@ export class PostService {
             category.id.toString() === id.toString()
           )) >= 0
         )
-      );
+      )
+      .catch(this.handleError);
   }
 
   getPostDetails(id: number): Observable<Post> {
@@ -123,7 +142,8 @@ export class PostService {
         return post.publicationDate > new Date().getTime()
           ? null 
           : post;
-      });
+      })
+      .catch(this.handleError);
   }
 
   createPost(post: Post): Observable<Post> {
@@ -140,21 +160,23 @@ export class PostService {
 
     return this._http
       .post(`${this._backendUri}/posts`, post)
-      .map((response: Response): Post => Post.fromJson(response.json()));
-
+      .map((response: Response): Post => Post.fromJson(response.json()))
+      .catch(this.handleError);
   }
 
   editPost(post: Post): Observable<Post> {
     return this._http
       .put(`${this._backendUri}/posts/${post.id}`, post)
-      .map((response: Response): Post => Post.fromJson(response.json()));
-
+      .map((response: Response): Post => Post.fromJson(response.json()))
+      .catch(this.handleError);
   }
 
   patchPostLikes(id: number, likes: number[]): Observable<Post> {
     return this._http
       .patch(`${this._backendUri}/posts/${id}`, { likes })
-      .map((response: Response): Post => Post.fromJson(response.json()));
+      .map((response: Response): Post => Post.fromJson(response.json()))
+      .catch(this.handleError);
+
   }
 
 }

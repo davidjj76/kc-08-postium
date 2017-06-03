@@ -31,7 +31,10 @@ export class PostDetailsComponent implements OnInit {
     @Inject(NativeWindow) private _window) { }
 
   ngOnInit(): void {
-    this._activatedRoute.data.subscribe((data: { post: Post }) => this.post = data.post);
+    this._activatedRoute.data.subscribe(
+      (data: { post: Post }) => this.post = data.post,
+      (error: any) => this.post = null
+    );
     this._window.scrollTo(0, 0);
   }
 
